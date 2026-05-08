@@ -1,4 +1,4 @@
-"""src/react_agent/tools.py
+"""src/carbon_react_agent/tools.py
 
 This module provides tools which can be used by the agent.
 """
@@ -8,7 +8,7 @@ from typing import Any, Callable, List, Optional, cast
 from langchain_exa import ExaSearchRetriever
 from langgraph.runtime import get_runtime
 
-from react_agent.context import Context
+from carbon_react_agent.context import Context
 
 
 async def search_web(query: str) -> Optional[dict[str, Any]]:

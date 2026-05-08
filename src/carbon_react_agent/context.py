@@ -1,4 +1,4 @@
-"""src/react_agent/context.py
+"""src/carbon_react_agent/context.py
 
 This module defines configurable parameters for the agent.
 """

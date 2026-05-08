@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "carbon-react-agent"
 version = "0.1.0"
-description = "A LangGraph-based ReAct agent that computes the carbon footprint from product data."
+description = "ReAct agent built with LangGraph, leveraging LLM reasoning and semantic web search to compute carbon footprints from product data."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = "==3.14.4"
@@ -28,10 +28,10 @@ dev = ["ruff==0.15.12", "pre-commit==4.6.0"]
 
 # Tools settings --------------------------------------------------------------------------------------------------
 [tool.setuptools]
-packages = ["react_agent"]
+packages = ["carbon_react_agent"]
 
 [tool.setuptools.package-dir]
-"react_agent" = "src/react_agent"
+"carbon_react_agent" = "src/carbon_react_agent"
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
