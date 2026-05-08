@@ -17,17 +17,17 @@ async def search_web(query: str) -> Optional[dict[str, Any]]:
     This function performs a web search using the Exa search engine.
 
     Args:
-        query (str): 
+        query (str):
             The search query.
 
     Returns:
-        Optional[dict[str, Any]]: 
+        Optional[dict[str, Any]]:
             The search results or None if no results were found.
     """
     runtime = get_runtime(Context)
     wrapped = ExaSearchRetriever(
         k=runtime.context.search_web_max_results,
-        type=runtime.context.search_web_type
+        type=runtime.context.search_web_type,
     )
     return cast(dict[str, Any], await wrapped.ainvoke({"query": query}))
 
