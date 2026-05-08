@@ -16,24 +16,24 @@ from typing_extensions import Annotated
 
 class ProductCarbonFootprint(TypedDict):
     """Structured representation of a Product Carbon Footprint (PCF) value.
-    
+
     This class defines the expected structure for representing a PCF value.
 
     Attributes:
-        co2e_kg (float): 
+        co2e_kg (float):
             The carbon footprint value expressed in kilograms of CO2 equivalent.
-        
+
         source (Literal["official", "estimated"]):
             The source from which the PCF value was obtained ("official", "estimated").
-        
-        explanation (str): 
+
+        explanation (str):
             Explanation to provide details about how the PCF value was obtained.
     """
-    
+
     co2e_kg: float
-    
+
     source: Literal["official", "estimated"]
-    
+
     explanation: str
 
 
@@ -43,15 +43,15 @@ class RetrievedEvidence(TypedDict):
     This class defines the expected structure for representing retrieved evidence.
 
     Attributes:
-        content (str): 
+        content (str):
             The content of the retrieved evidence.
-        
+
         source (str):
             The source from which the evidence was obtained.
     """
-    
+
     content: str
-    
+
     source: str
 
 
@@ -80,9 +80,9 @@ class State(InputState):
     Attributes:
         messages (Annotated[Sequence[AnyMessage], add_messages]):
             Messages tracking the primary execution state of the agent.
-        
+
         is_last_step (IsLastStep):
-            Indicates whether the current step is the last one before the graph 
+            Indicates whether the current step is the last one before the graph
             raises an error.
 
         search_web_count (int):
@@ -90,10 +90,10 @@ class State(InputState):
 
         official_pcf (Optional[ProductCarbonFootprint]):
             Stores information about the official carbon footprint for the product.
-        
+
         retrieved_evidence (list[RetrievedEvidence]):
             Stores relevant information gathered for estimating carbon footprint.
-        
+
         estimated_pcf (Optional[ProductCarbonFootprint]):
             Stores information about the estimated carbon footprint for the product.
     """
