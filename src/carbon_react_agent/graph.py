@@ -14,7 +14,7 @@ from langgraph.runtime import Runtime
 from carbon_react_agent.context import Context
 from carbon_react_agent.state import InputState, State
 from carbon_react_agent.tools import TOOLS
-from carbon_react_agent.utils import load_chat_model
+from langchain.chat_models import init_chat_model
 
 # Define the function that calls the model
 
@@ -28,13 +28,16 @@ async def call_model(
 
     Args:
         state (State): The current state of the conversation.
-        config (RunnableConfig): Configuration for the model run.
+        runtime (Runtime[Context]): The runtime environment.
 
     Returns:
         dict: A dictionary containing the model's response message.
     """
     # Initialize the model with tool binding. Change the model or add more tools here.
-    model = load_chat_model(runtime.context.model).bind_tools(TOOLS)
+    model = init_chat_model(
+        model=runtime.context.model, 
+        temperature=runtime.context.model_temperature
+    ).bind_tools(TOOLS)
 
     # Format the system prompt. Customize this to change the agent's behavior.
     system_message = runtime.context.system_prompt.format(
