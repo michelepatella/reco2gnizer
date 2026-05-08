@@ -9,7 +9,12 @@ import os
 from dataclasses import dataclass, field, fields
 from typing import Annotated
 
-from carbon_react_agent.const import DEFAULT_MODEL, DEFAULT_MODEL_TEMPERATURE, DEFAULT_SEARCH_WEB_MAX_RESULTS, DEFAULT_SEARCH_WEB_TYPE
+from carbon_react_agent.const import (
+    DEFAULT_MODEL,
+    DEFAULT_MODEL_TEMPERATURE,
+    DEFAULT_SEARCH_WEB_MAX_RESULTS,
+    DEFAULT_SEARCH_WEB_TYPE,
+)
 
 from . import prompts
 
@@ -38,7 +43,7 @@ class Context:
     system_prompt: str = field(
         default=prompts.SYSTEM_PROMPT,
         metadata={
-            "description": "The system prompt to use for the agent's interactions."
+            "description": "The system prompt to use for the agent's interactions.",
         },
     )
 
@@ -46,28 +51,28 @@ class Context:
         default=DEFAULT_MODEL,
         metadata={
             "description": "The name of the language model to use for the agent's main interactions. "
-            "('provider-name/model-name')"
+            "('provider-name/model-name')",
         },
     )
 
     model_temperature: float = field(
         default=DEFAULT_MODEL_TEMPERATURE,
         metadata={
-            "description": "The temperature to use for the language model (0.0-1.0)."
+            "description": "The temperature to use for the language model (0.0-1.0).",
         },
     )
 
     search_web_max_results: int = field(
         default=DEFAULT_SEARCH_WEB_MAX_RESULTS,
         metadata={
-            "description": "The maximum number of web search results to return for each query (1-100)."
+            "description": "The maximum number of web search results to return for each query (1-100).",
         },
     )
 
     search_web_type: str = field(
         default=DEFAULT_SEARCH_WEB_TYPE,
         metadata={
-            "description": 'The type of web search to perform ("fast", "auto", "deep").'
+            "description": 'The type of web search to perform ("fast", "auto", "deep").',
         },
     )
 
@@ -89,5 +94,7 @@ class Context:
 
             if getattr(self, f.name) == f.default:
                 setattr(
-                    self, f.name, os.environ.get(f.name.upper(), f.default)
+                    self,
+                    f.name,
+                    os.environ.get(f.name.upper(), f.default),
                 )
