@@ -1,29 +1,35 @@
-"""This module provides example tools for web scraping and search functionality.
+"""src/react_agent/tools.py
 
-It includes a basic Tavily search function (as an example)
-
-These tools are intended as free examples to get started. For production use,
-consider implementing more robust and specialized tools tailored to your needs.
+This module provides tools which can be used by the React Agent.
 """
 
 from typing import Any, Callable, List, Optional, cast
 
-from langchain_tavily import TavilySearch
+from langchain_exa import ExaSearchRetriever
 from langgraph.runtime import get_runtime
 
 from react_agent.context import Context
 
 
-async def search(query: str) -> Optional[dict[str, Any]]:
-    """Search for general web results.
+async def search_web(query: str) -> Optional[dict[str, Any]]:
+    """Search for web results.
 
-    This function performs a search using the Tavily search engine, which is designed
-    to provide comprehensive, accurate, and trusted results. It's particularly useful
-    for answering questions about current events.
+    This function performs a web search using the Exa search engine.
+
+    Args:
+        query (str): 
+            The search query.
+
+    Returns:
+        Optional[dict[str, Any]]: 
+            The search results or None if no results were found.
     """
     runtime = get_runtime(Context)
-    wrapped = TavilySearch(max_results=runtime.context.max_search_results)
+    wrapped = ExaSearchRetriever(
+        k=runtime.context.search_web_max_results,
+        type=runtime.context.search_web_type
+    )
     return cast(dict[str, Any], await wrapped.ainvoke({"query": query}))
 
 
-TOOLS: List[Callable[..., Any]] = [search]
+TOOLS: List[Callable[..., Any]] = [search_web]

@@ -29,10 +29,17 @@ class Context:
         },
     )
 
-    max_search_results: int = field(
+    search_web_max_results: int = field(
         default=10,
         metadata={
-            "description": "The maximum number of search results to return for each search query."
+            "description": "The maximum number of web search results to return for each query (1-100)."
+        },
+    )
+
+    search_web_type: str = field(
+        default="auto",
+        metadata={
+            "description": "The type of web search to perform (\"fast\", \"auto\", \"deep\")."
         },
     )
 
