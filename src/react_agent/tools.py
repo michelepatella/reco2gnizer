@@ -1,6 +1,6 @@
 """src/react_agent/tools.py
 
-This module provides tools which can be used by the React Agent.
+This module provides tools which can be used by the agent.
 """
 
 from typing import Any, Callable, List, Optional, cast
