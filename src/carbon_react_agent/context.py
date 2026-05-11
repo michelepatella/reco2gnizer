@@ -94,7 +94,7 @@ class Context:
             if not f.init:
                 continue
 
-        if getattr(self, f.name) == f.default:
-            env_val = os.environ.get(f.name.upper())
-            if env_val is not None:
-                setattr(self, f.name, f.type(env_val))
+            if getattr(self, f.name) == f.default:
+                env_val = os.environ.get(f.name.upper())
+                if env_val is not None:
+                    setattr(self, f.name, f.type(env_val))
