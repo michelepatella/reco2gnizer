@@ -60,26 +60,24 @@ async def call_model(
         runtime.context.search_web_max_calls - state.search_web_count
     )
 
-    # Format the system prompt with dynamic information
-    system_message = SYSTEM_PROMPT.format(
+    # Format the system prompt instructions
+    system_instructions = SYSTEM_PROMPT.format(
         product_data=state.product_data,
         search_web_remaining_calls=search_web_remaining_calls,
         search_web_max_calls=runtime.context.search_web_max_calls,
     )
 
-    # Prepare messages starting with the system instructions
-    messages = [SystemMessage(content=system_message)]
-
     if not state.messages:
-        # First turn: trigger the analysis with an explicit human message
-        messages.append(
+        # First execution: Create the initial sequence
+        messages = [
+            SystemMessage(content=system_instructions),
             HumanMessage(
                 content=f"Analyze the Product Carbon Footprint (PCF) for this product: {state.product_data}",
             ),
-        )
+        ]
     else:
-        # Subsequent turns: extend with the conversation history
-        messages.extend(state.messages)
+        # Subsequent executions: pass the conversation history
+        messages = list(state.messages)
 
     # Get the model's response
     response = cast(
