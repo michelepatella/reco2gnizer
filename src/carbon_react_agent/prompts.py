@@ -25,9 +25,8 @@ Product data: {product_data}
    ** PAS 2050 and ISO/TS 14067 — for carbon footprint calculation guidelines
   while using the retrieved information to inform the estimation process, provided that
   the information is reliable and relevant.
-
-# Constraints
 * You have {search_web_remaining_calls}/{search_web_max_calls} `search_web` calls remaining.
+  If `search_web` calls are exhausted, provide the best possible estimate using available evidence.
 """
 
 OUTPUT_FORMAT_INSTRUCTIONS = """
