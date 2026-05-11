@@ -25,7 +25,7 @@ class InputState:
             The data of the product for which the carbon footprint is being computed.
     """
 
-    product_data: dict[str, Any]
+    product_data: dict[str, Any] = field(default=dict)
 
 
 @dataclass
@@ -57,4 +57,4 @@ class State(InputState):
 
     retrieved_evidence: list[Any] = field(default_factory=list)
 
-    co2e_kg: dict[str, Any] = field(default=dict)
+    co2e_kg: dict[str, Any] = field(default_factory=dict)

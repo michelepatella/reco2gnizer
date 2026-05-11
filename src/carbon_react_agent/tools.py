@@ -22,7 +22,7 @@ async def search_web(query: str) -> dict[str, Any] | None:
             The search query.
 
     Returns:
-        Optional[dict[str, Any]]:
+        dict[str, Any] | None:
             The search results or None if no results were found.
     """
     runtime = get_runtime(Context)
