@@ -12,6 +12,7 @@ from typing import Annotated
 from carbon_react_agent.const import (
     DEFAULT_MODEL,
     DEFAULT_MODEL_TEMPERATURE,
+    DEFAULT_SEARCH_WEB_MAX_CALLS,
     DEFAULT_SEARCH_WEB_MAX_RESULTS,
     DEFAULT_SEARCH_WEB_TYPE,
 )
@@ -36,6 +37,9 @@ class Context:
 
         search_web_type (str):
             The type of web search to perform ("fast", "auto", "deep").
+
+        search_web_max_calls (int):
+            The maximum number of web search calls the agent can make per run (> 0).
     """
 
     model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
@@ -64,6 +68,13 @@ class Context:
         default=DEFAULT_SEARCH_WEB_TYPE,
         metadata={
             "description": 'The type of web search to perform ("fast", "auto", "deep").',
+        },
+    )
+
+    search_web_max_calls: int = field(
+        default=DEFAULT_SEARCH_WEB_MAX_CALLS,
+        metadata={
+            "description": "The maximum number of web search calls the agent can make per run (> 0).",
         },
     )
 
