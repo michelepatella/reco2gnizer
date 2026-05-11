@@ -10,6 +10,9 @@ from dataclasses import dataclass, field, fields
 from typing import Annotated
 
 from .const import (
+    DEFAULT_ENABLE_LOGGING,
+    DEFAULT_LOGS_DIR,
+    DEFAULT_LOGS_PATH,
     DEFAULT_MODEL,
     DEFAULT_MODEL_TEMPERATURE,
     DEFAULT_SEARCH_WEB_MAX_CALLS,
@@ -40,6 +43,15 @@ class Context:
 
         search_web_max_calls (int):
             The maximum number of web search calls the agent can make per run (> 0).
+
+        enable_logging (bool):
+            Whether to enable logging of agent execution to files (True/False).
+
+        logs_dir (str):
+            The directory path for execution logs if logging is enabled.
+
+        logs_path (str):
+            The file path for the execution log if logging is enabled.
     """
 
     model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
@@ -75,6 +87,27 @@ class Context:
         default=DEFAULT_SEARCH_WEB_MAX_CALLS,
         metadata={
             "description": "The maximum number of web search calls the agent can make per run (> 0).",
+        },
+    )
+
+    enable_logging: bool = field(
+        default=DEFAULT_ENABLE_LOGGING,
+        metadata={
+            "description": "Whether to enable logging of agent execution to files (True/False).",
+        },
+    )
+
+    logs_dir: str = field(
+        default=DEFAULT_LOGS_DIR,
+        metadata={
+            "description": "The directory path for execution logs if logging is enabled.",
+        },
+    )
+
+    logs_path: str = field(
+        default=DEFAULT_LOGS_PATH,
+        metadata={
+            "description": "The file path for the execution log if logging is enabled.",
         },
     )
 
