@@ -77,14 +77,14 @@ async def call_model(
 
     # Prepare the messages list
     if not state.messages:
-        # First execution: use system instructions directly as
+        # First execution: use system instructions directly
         # the initial message
         initial_msg = HumanMessage(content=system_prompt)
         messages = [initial_msg]
     else:
         # Subsequent executions: always start with the initial message
-        if state.messages[0]:
-            messages = [state.messages[0], *list(state.messages[1:])]
+        if state.initial_message:
+            messages = [state.initial_message, *list(state.messages)]
         else:
             messages = list(state.messages)
 
@@ -114,6 +114,10 @@ async def call_model(
         "messages": [response],
         "search_web_count": new_search_web_count,
     }
+
+    # If this is the first call, save the initial message
+    if not state.messages and len(messages) > 0:
+        return_dict["initial_message"] = messages[0]
 
     return return_dict
 
@@ -152,11 +156,11 @@ async def answer(state: State, runtime: Runtime[Context]) -> dict[str, Any]:
 
     # Prepare messages with the conversation history and
     # output format instructions
-    if state.messages[0]:
+    if state.initial_message:
         messages = [
             SystemMessage(content=system_prompt),
-            state.messages[0],
-            *state.messages[1:],
+            state.initial_message,
+            *state.messages,
             HumanMessage(content=OUTPUT_FORMAT_INSTRUCTIONS),
         ]
     else:
