@@ -42,9 +42,6 @@ class State(InputState):
         search_web_count (int):
             Tracks the number of times search web has been called per agent run.
 
-        retrieved_evidence (list[Any]):
-            Stores relevant information gathered for estimating carbon footprint.
-
         co2e_kg (dict[str, Any]):
             The final carbon footprint result.
     """
@@ -54,7 +51,5 @@ class State(InputState):
     )
 
     search_web_count: int = field(default=0)
-
-    retrieved_evidence: list[Any] = field(default_factory=list)
 
     co2e_kg: dict[str, Any] = field(default_factory=dict)
