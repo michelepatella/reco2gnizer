@@ -9,7 +9,7 @@ import os
 from dataclasses import dataclass, field, fields
 from typing import Annotated
 
-from carbon_react_agent.const import (
+from .const import (
     DEFAULT_MODEL,
     DEFAULT_MODEL_TEMPERATURE,
     DEFAULT_SEARCH_WEB_MAX_CALLS,
@@ -94,9 +94,7 @@ class Context:
             if not f.init:
                 continue
 
-            if getattr(self, f.name) == f.default:
-                setattr(
-                    self,
-                    f.name,
-                    os.environ.get(f.name.upper(), f.default),
-                )
+        if getattr(self, f.name) == f.default:
+            env_val = os.environ.get(f.name.upper())
+            if env_val is not None:
+                setattr(self, f.name, f.type(env_val))

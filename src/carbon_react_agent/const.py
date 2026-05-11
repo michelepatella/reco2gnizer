@@ -5,7 +5,7 @@ This module defines constants for the agent.
 
 # Model
 DEFAULT_MODEL = (
-    "google_vertexai:gemini-2.5-flash"  # Alternatively: "openai:o3-mini"
+    "google_genai:gemini-2.5-flash"  # Alternatively: "openai:o3-mini"
 )
 DEFAULT_MODEL_TEMPERATURE = 0.0
 

@@ -6,25 +6,25 @@ Define a ReAct agent with LangGraph (LangChain).
 from typing import Any, cast
 
 from langchain.chat_models import init_chat_model
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, SystemMessage
 from langgraph.graph import StateGraph
 from langgraph.prebuilt import ToolNode
 from langgraph.runtime import Runtime
 
-from carbon_react_agent.const import (
+from .const import (
     ANSWER_NODE,
     CALL_MODEL_NODE,
     END_NODE,
     START_NODE,
     TOOLS_NODE,
 )
-from carbon_react_agent.context import Context
-from carbon_react_agent.prompts import (
+from .context import Context
+from .prompts import (
     OUTPUT_FORMAT_INSTRUCTIONS,
     SYSTEM_PROMPT,
 )
-from carbon_react_agent.state import InputState, State
-from carbon_react_agent.tools import TOOLS
+from .state import InputState, State
+from .tools import TOOLS
 
 
 async def call_model(
@@ -69,7 +69,7 @@ async def call_model(
     response = cast(
         "AIMessage",
         await model.ainvoke(
-            [{"role": "system", "content": system_message}, *state.messages],
+            [SystemMessage(content=system_message), *state.messages],
         ),
     )
 
@@ -103,16 +103,15 @@ async def answer(state: State, runtime: Runtime[Context]) -> dict[str, Any]:
 
     # Prepare messages with the output format instructions
     messages = [
-        {
-            "role": "system",
-            "content": SYSTEM_PROMPT.format(
+        SystemMessage(
+            content=SYSTEM_PROMPT.format(
                 product_data=state.product_data,
                 search_web_remaining_calls=0,
                 search_web_max_calls=runtime.context.search_web_max_calls,
             ),
-        },
+        ),
         *state.messages,
-        {"role": "user", "content": OUTPUT_FORMAT_INSTRUCTIONS},
+        SystemMessage(content=OUTPUT_FORMAT_INSTRUCTIONS),
     ]
 
     # Get the structured response
@@ -158,6 +157,7 @@ def route_model_output(state: State, runtime: Runtime[Context]) -> str:
 
     # If max search web calls reached, provide the answer
     if state.search_web_count >= runtime.context.search_web_max_calls:
+        state.search_web_count += 1
         return ANSWER_NODE
 
     # If there is no tool call, provide the answer

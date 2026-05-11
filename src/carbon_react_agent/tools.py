@@ -9,7 +9,7 @@ from typing import Any, cast
 from langchain_exa import ExaSearchRetriever
 from langgraph.runtime import get_runtime
 
-from carbon_react_agent.context import Context
+from .context import Context
 
 
 async def search_web(query: str) -> dict[str, Any] | None:
