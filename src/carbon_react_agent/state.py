@@ -21,7 +21,7 @@ class InputState:
     representing a narrower interface to the outside world.
 
     Attributes:
-        product_data (Dict[str, Any]):
+        product_data (dict[str, Any]):
             The data of the product for which the carbon footprint is being computed.
     """
 
@@ -42,10 +42,10 @@ class State(InputState):
         search_web_count (int):
             Tracks the number of times search web has been called per agent run.
 
-        retrieved_evidence (List[Any]):
+        retrieved_evidence (list[Any]):
             Stores relevant information gathered for estimating carbon footprint.
 
-        pcf (Dict[str, Any]):
+        pcf (dict[str, Any]):
             The final carbon footprint result.
     """
 
