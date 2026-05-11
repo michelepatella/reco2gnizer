@@ -3,6 +3,7 @@
 Define a ReAct agent with LangGraph (LangChain).
 """
 
+import json
 from typing import Any, cast
 
 from langchain.chat_models import init_chat_model
@@ -30,7 +31,7 @@ from .tools import TOOLS
 async def call_model(
     state: State,
     runtime: Runtime[Context],
-) -> dict[str, list[AIMessage]]:
+) -> dict[str, Any]:
     """Call the LLM powering the agent.
 
     This function prepares the prompt, initializes the model,
@@ -44,8 +45,9 @@ async def call_model(
             The runtime environment.
 
     Returns:
-        dict[str, list[AIMessage]]:
-            A dictionary containing the model's response message.
+        dict[str, Any]:
+            A dictionary containing the model's response message and
+            the updated search count.
     """
     # Initialize the model with tool binding
     model = init_chat_model(
@@ -65,16 +67,18 @@ async def call_model(
         search_web_max_calls=runtime.context.search_web_max_calls,
     )
 
-    # Prepare messages
+    # Prepare messages starting with the system instructions
     messages = [SystemMessage(content=system_message)]
 
     if not state.messages:
+        # First turn: trigger the analysis with an explicit human message
         messages.append(
             HumanMessage(
-                content="You are starting with no prior information.",
+                content=f"Analyze the Product Carbon Footprint (PCF) for this product: {state.product_data}",
             ),
         )
     else:
+        # Subsequent turns: extend with the conversation history
         messages.extend(state.messages)
 
     # Get the model's response
@@ -83,9 +87,16 @@ async def call_model(
         await model.ainvoke(messages),
     )
 
-    # Return the model's response as a list to
-    # be added to existing messages
-    return {"messages": [response]}
+    # Increment the search counter if the model decided to call a tool
+    new_search_web_count = state.search_web_count
+    if response.tool_calls:
+        new_search_web_count += 1
+
+    # Return the model's response and updated counter to the state
+    return {
+        "messages": [response],
+        "search_web_count": new_search_web_count,
+    }
 
 
 async def answer(state: State, runtime: Runtime[Context]) -> dict[str, Any]:
@@ -124,13 +135,23 @@ async def answer(state: State, runtime: Runtime[Context]) -> dict[str, Any]:
         HumanMessage(content=OUTPUT_FORMAT_INSTRUCTIONS),
     ]
 
-    # Get the structured response
-    response = cast(
-        "dict[str, Any]",
-        await model.ainvoke(messages),
-    )
+    # Get the model's response
+    response = await model.ainvoke(messages)
 
-    return {"co2e_kg": response}
+    try:
+        # Ensure content is a string and clean potential
+        # markdown wrappers
+        content_str = str(response.content)
+        cleaned_content = (
+            content_str.replace("```json", "").replace("```", "").strip()
+        )
+        pcf_data = json.loads(cleaned_content)
+    except Exception:
+        # Fallback in case of parsing errors
+        pcf_data = {"co2e_kg": str(response.content)}
+
+    # Return the parsed data to be stored in co2e_kg
+    return {"co2e_kg": pcf_data}
 
 
 def route_model_output(state: State, runtime: Runtime[Context]) -> str:
@@ -167,7 +188,6 @@ def route_model_output(state: State, runtime: Runtime[Context]) -> str:
 
     # If max search web calls reached, provide the answer
     if state.search_web_count >= runtime.context.search_web_max_calls:
-        state.search_web_count += 1
         return ANSWER_NODE
 
     # If there is no tool call, provide the answer
