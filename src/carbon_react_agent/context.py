@@ -16,8 +16,6 @@ from carbon_react_agent.const import (
     DEFAULT_SEARCH_WEB_TYPE,
 )
 
-from . import prompts
-
 
 @dataclass(kw_only=True)
 class Context:
@@ -26,9 +24,6 @@ class Context:
     This class defines the configurable parameters for the agent.
 
     Attributes:
-        system_prompt (str):
-            The system prompt to use for the agent's interactions.
-
         model (Annotated[str, {"__template_metadata__": {"kind": "llm"}}]):
             The name of the language model to use for the agent's main interactions.
             ('provider-name/model-name').
@@ -39,13 +34,6 @@ class Context:
         search_web_type (str):
             The type of web search to perform ("fast", "auto", "deep").
     """
-
-    system_prompt: str = field(
-        default=prompts.SYSTEM_PROMPT,
-        metadata={
-            "description": "The system prompt to use for the agent's interactions.",
-        },
-    )
 
     model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
         default=DEFAULT_MODEL,
