@@ -1,3 +1,8 @@
+"""src/carbon_react_agent/const.py
+
+This module defines constants for the agent.
+"""
+
 #########################
 # DEFAULT CONTEXT VALUES
 #########################

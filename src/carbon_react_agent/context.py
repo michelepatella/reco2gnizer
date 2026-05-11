@@ -28,6 +28,9 @@ class Context:
             The name of the language model to use for the agent's main interactions.
             ('provider-name/model-name').
 
+        model_temperature (float):
+            The temperature to use for the language model (0.0-1.0).
+
         search_web_max_results (int):
             The maximum number of web search results to return for each query (1-100).
 
