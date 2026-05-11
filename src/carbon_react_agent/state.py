@@ -45,7 +45,7 @@ class State(InputState):
         retrieved_evidence (list[Any]):
             Stores relevant information gathered for estimating carbon footprint.
 
-        pcf (dict[str, Any]):
+        co2e_kg (dict[str, Any]):
             The final carbon footprint result.
     """
 
@@ -57,4 +57,4 @@ class State(InputState):
 
     retrieved_evidence: list[Any] = field(default_factory=list)
 
-    pcf: dict[str, Any] = field(default=dict)
+    co2e_kg: dict[str, Any] = field(default=dict)
