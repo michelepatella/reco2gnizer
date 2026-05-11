@@ -3,7 +3,8 @@
 This module provides tools which can be used by the agent.
 """
 
-from typing import Any, Callable, List, Optional, cast
+from collections.abc import Callable
+from typing import Any, cast
 
 from langchain_exa import ExaSearchRetriever
 from langgraph.runtime import get_runtime
@@ -11,7 +12,7 @@ from langgraph.runtime import get_runtime
 from carbon_react_agent.context import Context
 
 
-async def search_web(query: str) -> Optional[dict[str, Any]]:
+async def search_web(query: str) -> dict[str, Any] | None:
     """Search for web results.
 
     This function performs a web search using the Exa search engine.
@@ -21,7 +22,7 @@ async def search_web(query: str) -> Optional[dict[str, Any]]:
             The search query.
 
     Returns:
-        Optional[dict[str, Any]]:
+        Optional[Dict[str, Any]]:
             The search results or None if no results were found.
     """
     runtime = get_runtime(Context)
@@ -29,7 +30,7 @@ async def search_web(query: str) -> Optional[dict[str, Any]]:
         k=runtime.context.search_web_max_results,
         type=runtime.context.search_web_type,
     )
-    return cast(dict[str, Any], await wrapped.ainvoke({"query": query}))
+    return cast("dict[str, Any]", await wrapped.ainvoke({"query": query}))
 
 
-TOOLS: List[Callable[..., Any]] = [search_web]
+TOOLS: list[Callable[..., Any]] = [search_web]
