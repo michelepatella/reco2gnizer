@@ -57,4 +57,4 @@ class State(InputState):
 
     retrieved_evidence: list[Any] = field(default_factory=list)
 
-    pcf: dict[str, Any] = field(default={})
+    pcf: dict[str, Any] = field(default=dict)
