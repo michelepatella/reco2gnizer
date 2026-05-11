@@ -20,3 +20,6 @@ TOOLS_NODE = "tools"
 ANSWER_NODE = "answer"
 START_NODE = "__start__"
 END_NODE = "__end__"
+
+# Tools
+SEARCH_WEB_TOOL = "search_web"
