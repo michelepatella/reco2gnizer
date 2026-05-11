@@ -6,7 +6,7 @@ Define a ReAct agent with LangGraph (LangChain).
 from typing import Any, cast
 
 from langchain.chat_models import init_chat_model
-from langchain_core.messages import AIMessage, SystemMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langgraph.graph import StateGraph
 from langgraph.prebuilt import ToolNode
 from langgraph.runtime import Runtime
@@ -65,12 +65,22 @@ async def call_model(
         search_web_max_calls=runtime.context.search_web_max_calls,
     )
 
+    # Prepare messages
+    messages = [SystemMessage(content=system_message)]
+
+    if not state.messages:
+        messages.append(
+            HumanMessage(
+                content="You are starting with no prior information.",
+            ),
+        )
+    else:
+        messages.extend(state.messages)
+
     # Get the model's response
     response = cast(
         "AIMessage",
-        await model.ainvoke(
-            [SystemMessage(content=system_message), *state.messages],
-        ),
+        await model.ainvoke(messages),
     )
 
     # Return the model's response as a list to
@@ -111,7 +121,7 @@ async def answer(state: State, runtime: Runtime[Context]) -> dict[str, Any]:
             ),
         ),
         *state.messages,
-        SystemMessage(content=OUTPUT_FORMAT_INSTRUCTIONS),
+        HumanMessage(content=OUTPUT_FORMAT_INSTRUCTIONS),
     ]
 
     # Get the structured response
