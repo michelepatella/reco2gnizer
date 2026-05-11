@@ -43,3 +43,7 @@ Based on the information gathered, reply only with a JSON object containing thes
 }}
 Do not include any markdown formatting or additional JSON wrappers.
 """
+
+AFTER_TOOL_MESSAGE_PROMPT = """
+Based on the tool results, continue analyzing the PCF.
+"""
