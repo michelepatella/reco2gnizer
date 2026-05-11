@@ -5,13 +5,12 @@ This module defines the state structures for the agent.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Any, Literal, Optional, Sequence, TypedDict
+from typing import Annotated, Any, Literal, TypedDict
 
 from langchain_core.messages import AnyMessage
 from langgraph.graph import add_messages
-from langgraph.managed import IsLastStep
-from typing_extensions import Annotated
 
 
 class ProductCarbonFootprint(TypedDict):
@@ -81,33 +80,22 @@ class State(InputState):
         messages (Annotated[Sequence[AnyMessage], add_messages]):
             Messages tracking the primary execution state of the agent.
 
-        is_last_step (IsLastStep):
-            Indicates whether the current step is the last one before the graph
-            raises an error.
-
         search_web_count (int):
             Tracks the number of times search web has been called per agent run.
-
-        official_pcf (Optional[ProductCarbonFootprint]):
-            Stores information about the official carbon footprint for the product.
 
         retrieved_evidence (list[RetrievedEvidence]):
             Stores relevant information gathered for estimating carbon footprint.
 
-        estimated_pcf (Optional[ProductCarbonFootprint]):
-            Stores information about the estimated carbon footprint for the product.
+        pcf (Optional[ProductCarbonFootprint]):
+            The final carbon footprint result.
     """
 
     messages: Annotated[Sequence[AnyMessage], add_messages] = field(
-        default_factory=list
+        default_factory=list,
     )
-
-    is_last_step: IsLastStep = field(default=False)
 
     search_web_count: int = field(default=0)
 
-    official_pcf: Optional[ProductCarbonFootprint] = field(default=None)
-
     retrieved_evidence: list[RetrievedEvidence] = field(default_factory=list)
 
-    estimated_pcf: Optional[ProductCarbonFootprint] = field(default=None)
+    pcf: ProductCarbonFootprint | None = field(default=None)
