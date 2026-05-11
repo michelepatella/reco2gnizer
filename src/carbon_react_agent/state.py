@@ -39,6 +39,9 @@ class State(InputState):
         messages (Annotated[Sequence[AnyMessage], add_messages]):
             Messages tracking the primary execution state of the agent.
 
+        initial_message (AnyMessage):
+            The first user message to preserve context across iterations.
+
         search_web_count (int):
             Tracks the number of times search web has been called per agent run.
 
@@ -49,6 +52,8 @@ class State(InputState):
     messages: Annotated[Sequence[AnyMessage], add_messages] = field(
         default_factory=list,
     )
+
+    initial_message: AnyMessage = field(default=None)
 
     search_web_count: int = field(default=0)
 
