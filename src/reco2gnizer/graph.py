@@ -8,6 +8,7 @@ import textwrap
 from pathlib import Path
 from typing import Any, cast
 
+from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import (
     AIMessage,
@@ -568,6 +569,9 @@ async def tool_wrapper(
 #                +--------------+                                           #
 #                                                                           #
 # ========================================================================= #
+# Load environment variables
+load_dotenv()
+
 # Graph
 builder = StateGraph(State, input_schema=InputState, context_schema=Context)
 
