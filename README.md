@@ -56,7 +56,7 @@
 - **ReAct Loop** — Uses a ReAct loop to search for official carbon footprint data, fallback to supporting evidence to inform estimation
 - **Carbon Footprint Quantification** — Computes the carbon footprint value in kg CO₂e (Cradle-to-Grave) based on the information gathered
 
-> [!INFO]
+> [!NOTE]
 > LLM-based carbon footprint estimation is done according the the following protocols:
 > - GHG Protocol Product Standard — for system boundaries and calculation methodology
 > - ISO 14040/14044 — for Life Cycle Assessment principles
