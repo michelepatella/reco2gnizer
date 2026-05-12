@@ -1,4 +1,4 @@
-"""src/carbon_react_agent/state.py
+"""src/reco2gnizer/state.py
 
 This module defines the state structures for the agent.
 """

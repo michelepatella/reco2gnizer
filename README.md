@@ -68,7 +68,7 @@ The agent requires access to:
 ### Installation
 
 ```sh
-pip install git+https://github.com/michelepatella/carbon-react-agent.git
+pip install git+https://github.com/michelepatella/reco2gnizer.git
 ```
 
 <p align="right"><a href="#readme-top">Top ↑</a></p>
@@ -81,7 +81,7 @@ Provide an example of how to use the agent.
 
 ## License
 
-Distributed under the [MIT License](https://github.com/michelepatella/carbon-react-agent/blob/main/LICENSE).
+Distributed under the [MIT License](https://github.com/michelepatella/reco2gnizer/blob/main/LICENSE).
 
 <p align="right"><a href="#readme-top">Top ↑</a></p>
 

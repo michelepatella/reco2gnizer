@@ -1,4 +1,4 @@
-"""src/carbon_react_agent/prompts.py
+"""src/reco2gnizer/prompts.py
 
 This module defines prompts used by the agent.
 """

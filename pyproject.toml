@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 # Project settings ------------------------------------------------------------------------------------------------
 [project]
-name = "carbon-react-agent"
+name = "reco2gnizer"
 version = "0.1.0"
 description = "ReAct agent built with LangGraph, leveraging LLM reasoning and semantic web search to compute carbon footprints from product data."
 readme = "README.md"
@@ -27,14 +27,14 @@ dev = ["ruff==0.15.12", "pre-commit==4.6.0"]
 
 # Other project settings ------------------------------------------------------------------------------------------
 [project.urls]
-"Source" = "https://github.com/michelepatella/carbon-react-agent"
+"Source" = "https://github.com/michelepatella/reco2gnizer"
 
 # Tools settings --------------------------------------------------------------------------------------------------
 [tool.setuptools]
-packages = ["carbon_react_agent"]
+packages = ["reco2gnizer"]
 
 [tool.setuptools.package-dir]
-"carbon_react_agent" = "src/carbon_react_agent"
+"reco2gnizer" = "src/reco2gnizer"
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]

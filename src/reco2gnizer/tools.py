@@ -1,4 +1,4 @@
-"""src/carbon_react_agent/tools.py
+"""src/reco2gnizer/tools.py
 
 This module provides tools which can be used by the agent.
 """

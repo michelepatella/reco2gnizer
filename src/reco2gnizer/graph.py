@@ -1,4 +1,4 @@
-"""src/carbon_react_agent/graph.py
+"""src/reco2gnizer/graph.py
 
 This module defines a ReAct agent with LangGraph — LangChain.
 """

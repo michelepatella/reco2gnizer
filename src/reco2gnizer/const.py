@@ -1,4 +1,4 @@
-"""src/carbon_react_agent/const.py
+"""src/reco2gnizer/const.py
 
 This module defines constants for the agent.
 """
@@ -18,13 +18,13 @@ DEFAULT_INITIAL_MESSAGE = None
 
 # Logging
 DEFAULT_ENABLE_LOGGING = True
-DEFAULT_LOGS_PATH = "carbon_react_agent.log"
+DEFAULT_LOGS_PATH = "reco2gnizer.log"
 DEFAULT_LOGS_DIR = "logs"
 LOGS_WIDTH = 100
 LOGS_CONTENT_WIDTH = LOGS_WIDTH - 4
 
 # Graph
-GRAPH_NAME = "carbon-react-agent"
+GRAPH_NAME = "reco2gnizer"
 
 # Graph nodes
 CALL_MODEL_GRAPH_NODE = "call_model"

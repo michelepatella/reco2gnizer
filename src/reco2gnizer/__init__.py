@@ -1,4 +1,4 @@
-"""src/carbon_react_agent/__init__.py
+"""src/reco2gnizer/__init__.py
 
 This module implements a ReAct agent which leverages LLM reasoning and
 semantic web search to compute carbon footprints from product data.
