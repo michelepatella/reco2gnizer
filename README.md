@@ -53,7 +53,7 @@
 - **Semantic Web Search** — Searches the web via Exa API to retrieve reliable environmental data related to the input product and supporting evidence for estimation
 - **ReAct Loop** — Uses a ReAct loop to prioritize official carbon footprint data and fallback to supporting evidence to inform estimation
 - **Carbon Footprint Quantification** — Computes the carbon footprint value in kg CO₂e (Cradle-to-Grave) based on retrieved information
-- **Logging**: Records full execution traces for debugging, validation, and auditability, making the system transparent and explainable
+- **Logging** — Records full execution traces for debugging, validation, and auditability, making the system transparent and explainable
 
 > [!NOTE]
 > LLM-based carbon footprint estimation follows established protocols:
