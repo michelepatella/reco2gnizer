@@ -20,6 +20,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -46,7 +47,20 @@
 
 <br>
 
-**ReCO₂gnizer** is a ReAct-based AI agent designed to estimate the carbon footprint of a given product in kg CO₂e (cradle-to-grave). The system combines LLMs with semantic web search to retrieve or estimate environmental impact data.
+**ReCO₂gnizer** is a ReAct-based AI agent that automatically computes the carbon footprint of any product by combining LLM reasoning with semantic web search.
+
+### How It Works
+
+- **LLM Reasoning** — Leverages an LLM (OpenAI/Google Gemini) to retrieve, analyze, and compute the most accurate carbon footprint
+- **Semantic Web Search** — Searches the web via Exa API to retrieve reliable environmental data related to the input product, or supporting evidence needed to estimate its carbon footprint
+- **ReAct Loop** — Uses a ReAct loop to search for official carbon footprint data, fallback to supporting evidence to inform estimation
+- **Carbon Footprint Quantification** — Computes the carbon footprint value in kg CO₂e (Cradle-to-Grave) based on the information gathered
+
+> [!INFO]
+> LLM-based carbon footprint estimation is done according the the following protocols:
+> - GHG Protocol Product Standard — for system boundaries and calculation methodology
+> - ISO 14040/14044 — for Life Cycle Assessment principles
+> - PAS 2050 and ISO/TS 14067 — for carbon footprint calculation guidelines
 
 <p align="right"><a href="#readme-top">Top ↑</a></p>
 
@@ -184,7 +198,7 @@ The agent outputs a JSON having the following schema:
 ```text
 {
   "co2e_kg": {
-    "value": <float value of the carbon footprint in kg CO2e>,
+    "value": <float value of the carbon footprint in kg CO₂e>,
     "source": <either "official" if an official value was found, or "estimated" if it was computed>,
     "explanation": <explanation of how the value was obtained (max 300 characters)>
   }
