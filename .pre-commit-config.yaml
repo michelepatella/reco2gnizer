@@ -15,8 +15,10 @@ repos:
     rev: v0.15.12
     hooks:
     -   id: ruff-format
+        exclude: \.md$
     -   id: ruff
         args: [--fix, --exit-zero]
+        exclude: \.md$
         pass_filenames: true
         always_run: true
         verbose: true
