@@ -364,6 +364,7 @@ async def call_model(
             runtime,
             call_num=call_num,
             tool_name=None,
+            query=None,
         )
 
     # Increment the search web counter if the model

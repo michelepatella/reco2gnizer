@@ -9,6 +9,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import Annotated, Any
 
+from const import DEFAULT_INITIAL_MESSAGE, DEFAULT_SEARCH_WEB_COUNT
 from langchain_core.messages import AnyMessage
 from langgraph.graph import add_messages
 
@@ -25,7 +26,12 @@ class InputState:
             The data of the product for which the carbon footprint is being computed.
     """
 
-    product_data: dict[str, Any] = field(default=dict)
+    product_data: dict[str, Any] = field(
+        default=dict,
+        metadata={
+            "description": "The data of the product for which the carbon footprint is being computed.",
+        },
+    )
 
 
 @dataclass
@@ -51,10 +57,26 @@ class State(InputState):
 
     messages: Annotated[Sequence[AnyMessage], add_messages] = field(
         default_factory=list,
+        metadata={
+            "description": "Messages tracking the primary execution state of the agent.",
+        },
     )
 
-    initial_message: AnyMessage = field(default=None)
+    initial_message: AnyMessage = field(
+        default=DEFAULT_INITIAL_MESSAGE,
+        metadata={
+            "description": "The first user message to preserve context across iterations.",
+        },
+    )
 
-    search_web_count: int = field(default=0)
+    search_web_count: int = field(
+        default=DEFAULT_SEARCH_WEB_COUNT,
+        metadata={
+            "description": "Tracks the number of times search web has been called per agent run.",
+        },
+    )
 
-    co2e_kg: dict[str, Any] = field(default_factory=dict)
+    co2e_kg: dict[str, Any] = field(
+        default_factory=dict,
+        metadata={"description": "The final carbon footprint result."},
+    )

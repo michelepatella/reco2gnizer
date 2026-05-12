@@ -29,7 +29,7 @@ Product data: {product_data}
 # Operational Guidelines
 * Use the `search_web` tool strategically and avoid redundant searches.
 * Even if the information retrieved is not sufficient for a precise estimate and `search_web`
-  calls are exhausted, provide the best possible estimate, thinking step by step.
+  calls are exhausted, provide the best possible estimate.
 
 # Constraints
 * You have {search_web_remaining_calls}/{search_web_max_calls} `search_web` calls remaining.
@@ -41,7 +41,7 @@ Based on the information gathered, reply only with a JSON object containing thes
 {{
     "value": <float (not null/none) value of the carbon footprint (in kg CO2e)>,
     "source": <either "official" if you found an official value, or "estimated" if you computed it>,
-    "explanation": "<concise explanation (max 150 characters) of how you obtained this value, including
+    "explanation": "<concise explanation (max 300 characters) of how you obtained this value, including
                    information sources>"
 }}
 Do not include any markdown formatting or additional JSON wrappers.
