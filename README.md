@@ -50,7 +50,7 @@ Write your stack.
 <p align="right"><a href="#readme-top">Top ↑</a></p>
 
 
-**Getting Started**
+**Getting Started**  
 Setup to use the agent in your project
 -
 
