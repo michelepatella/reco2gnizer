@@ -44,14 +44,16 @@
 <img  width="40%" src="https://github.com/user-attachments/assets/ab26a136-7c2e-464c-b880-b07bfc0d26d7" />
 </div>
 
-Introduce the project
+<br>
+
+**ReCO₂gnizer** is a ReAct-based AI agent designed to estimate the carbon footprint of a given product in kg CO₂e (cradle-to-grave). The system combines LLMs with semantic web search to retrieve or estimate environmental impact data.
 
 <p align="right"><a href="#readme-top">Top ↑</a></p>
 
 ### Built With
 
 [![Python](https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)  
-[![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)](https://www.langchain.com/langgraph)  
+[![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=langgraph&logoColor=white)](https://www.langchain.com/langgraph)  
 [![LangChain](https://img.shields.io/badge/LangChain-7FC8FF?style=for-the-badge&logo=langchain&logoColor=black)](https://www.langchain.com/langchain)
 
 <p align="right"><a href="#readme-top">Top ↑</a></p>
@@ -80,7 +82,7 @@ EXA_API_KEY=your_exa_key
 ```
 
 > [!IMPORTANT]
-> At least one LLM provider is required.
+> At least one LLM provider (+ Exa) is required.
 
 ### Installation
 
@@ -159,7 +161,7 @@ async def main() -> None:
         # The directory path for execution logs if logging is enabled.
         # Default: 'logs'
 
-        logs_path='execution.log'
+        logs_path='reco2gnizer.log'
         # The file path for the execution log if logging is enabled.
         # Default: 'reco2gnizer.log'
     )
