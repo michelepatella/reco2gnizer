@@ -41,7 +41,10 @@
 ## About The Project
 
 <div align="center">
-<img  width="40%" src="https://github.com/user-attachments/assets/ab26a136-7c2e-464c-b880-b07bfc0d26d7" />
+
+<img width="40%" src="https://github.com/user-attachments/assets/ab26a136-7c2e-464c-b880-b07bfc0d26d7#gh-light-mode-only" />
+<img width="40%" src="https://github.com/user-attachments/assets/f0cf3626-d70c-47b3-bba3-43017e66462e#gh-dark-mode-only">
+
 </div>
 
 <br>
