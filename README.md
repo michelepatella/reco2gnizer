@@ -35,7 +35,7 @@
 ## About The Project
 
 <div align="center">
-<img  width="30%" src="https://github.com/user-attachments/assets/ab26a136-7c2e-464c-b880-b07bfc0d26d7" />
+<img  width="50%" src="https://github.com/user-attachments/assets/ab26a136-7c2e-464c-b880-b07bfc0d26d7" />
 </div>
 
 Introduce the project
