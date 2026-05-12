@@ -20,7 +20,6 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -49,18 +48,18 @@
 
 **ReCO₂gnizer** is a ReAct-based AI agent that automatically computes the carbon footprint of any product by combining LLM reasoning with semantic web search.
 
-### How It Works
-
+- **LangGraph Architecture** — Implements a production-grade agentic framework with deterministic node-based control flow, execution state tracking, and configurable context
 - **LLM Reasoning** — Leverages an LLM (OpenAI/Google Gemini) to retrieve, analyze, and compute the most accurate carbon footprint
-- **Semantic Web Search** — Searches the web via Exa API to retrieve reliable environmental data related to the input product, or supporting evidence needed to estimate its carbon footprint
-- **ReAct Loop** — Uses a ReAct loop to search for official carbon footprint data, fallback to supporting evidence to inform estimation
-- **Carbon Footprint Quantification** — Computes the carbon footprint value in kg CO₂e (Cradle-to-Grave) based on the information gathered
+- **Semantic Web Search** — Searches the web via Exa API to retrieve reliable environmental data related to the input product and supporting evidence for estimation
+- **ReAct Loop** — Uses a ReAct loop to prioritize official carbon footprint data and fallback to supporting evidence to inform estimation
+- **Carbon Footprint Quantification** — Computes the carbon footprint value in kg CO₂e (Cradle-to-Grave) based on retrieved information
+- **Logging**: Records full execution traces for debugging, validation, and auditability, making the system transparent and explainable
 
 > [!NOTE]
-> LLM-based carbon footprint estimation is done according the the following protocols:
-> - GHG Protocol Product Standard — for system boundaries and calculation methodology
-> - ISO 14040/14044 — for Life Cycle Assessment principles
-> - PAS 2050 and ISO/TS 14067 — for carbon footprint calculation guidelines
+> LLM-based carbon footprint estimation follows established protocols:
+> - GHG Protocol Product Standard — System boundaries and calculation methodology
+> - ISO 14040/14044 — Life Cycle Assessment principles
+> - PAS 2050 and ISO/TS 14067 — Carbon footprint calculation guidelines
 
 <p align="right"><a href="#readme-top">Top ↑</a></p>
 
