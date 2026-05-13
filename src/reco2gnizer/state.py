@@ -9,9 +9,10 @@ from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import Annotated, Any
 
-from const import DEFAULT_INITIAL_MESSAGE, DEFAULT_SEARCH_WEB_COUNT
 from langchain_core.messages import AnyMessage
 from langgraph.graph import add_messages
+
+from .const import DEFAULT_INITIAL_MESSAGE, DEFAULT_SEARCH_WEB_COUNT
 
 
 @dataclass
