@@ -28,6 +28,8 @@ Product data: {product_data}
 
 # Operational Guidelines
 * Use the `search_web` tool strategically and avoid redundant searches.
+* Formulate clear, specific queries when using the `search_web` tool to maximize relevant
+  search results.
 * Even if the information retrieved is not sufficient for a precise estimate and `search_web`
   calls are exhausted, provide the best possible estimate.
 
