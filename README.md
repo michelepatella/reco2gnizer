@@ -207,6 +207,18 @@ The agent outputs a JSON having the following schema:
 }
 ```
 
+For example:
+
+```json
+{
+  "co2e_kg": {
+    "value": 276.0,
+    "source": "official",
+    "explanation": "Official PCF from Apple's Mac Studio Product Environmental Report (March 2025) for the M4 Max, 512GB SSD configuration."
+  }
+}
+```
+
 <p align="right"><a href="#readme-top">Top ↑</a></p>
 
 ## License
