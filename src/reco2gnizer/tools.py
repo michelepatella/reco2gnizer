@@ -47,8 +47,6 @@ async def search_web(query: str) -> Any:
         }
         compressed_response.append(compressed_result)
 
-    print(compressed_response)
-
     return compressed_response
 
 
