@@ -9,6 +9,7 @@ from typing import Any
 from langchain_exa import ExaSearchRetriever
 from langgraph.runtime import get_runtime
 
+from .const import SEARCH_WEB_HIGHLIGHTS
 from .context import Context
 
 
@@ -26,11 +27,29 @@ async def search_web(query: str) -> Any:
             The search results.
     """
     runtime = get_runtime(Context)
+
+    # Wrap the ExaSearchRetriever with the runtime context and invoke it
     wrapped = ExaSearchRetriever(
         k=runtime.context.search_web_max_results,
         type=runtime.context.search_web_type,
+        highlights=SEARCH_WEB_HIGHLIGHTS,
     )
-    return await wrapped.ainvoke(query)
+    response = await wrapped.ainvoke(query)
+
+    # Compress the response to only include title, url, and
+    # highlights for each result
+    compressed_response = []
+    for result in response:
+        compressed_result = {
+            "title": result.metadata["title"],
+            "url": result.metadata["url"],
+            "highlights": result.metadata["highlights"],
+        }
+        compressed_response.append(compressed_result)
+
+    print(compressed_response)
+
+    return compressed_response
 
 
 TOOLS: list[Callable[..., Any]] = [search_web]
