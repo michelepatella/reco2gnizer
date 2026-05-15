@@ -1,7 +1,6 @@
 <a id="readme-top"></a>
 
 <br/>
-
 <div align="center">
   <h1 align="center">ReCO₂gnizer</h1>
   <p align="center">
@@ -232,3 +231,9 @@ Distributed under the [MIT License](https://github.com/michelepatella/reco2gnize
 Thanks to [LangChain](https://www.langchain.com/) for their [ReAct agent template](https://github.com/langchain-ai/react-agent), which served as the foundation for this implementation.
 
 <p align="right"><a href="#readme-top">Top ↑</a></p>
+
+---
+
+<div align="center">
+  <sub>ReCO₂gnizer is powered by AI. It can make mistakes, so please verify important information.</sub>
+</div>
