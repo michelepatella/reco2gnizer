@@ -43,7 +43,7 @@ async def search_web(query: str) -> Any:
         compressed_result = {
             "title": result.metadata["title"],
             "url": result.metadata["url"],
-            "highlights": result.metadata["highlights"],
+            "highlights": result.metadata.get("highlights") or [],
         }
         compressed_response.append(compressed_result)
 
