@@ -4,8 +4,8 @@
 <div align="center">
   <h1 align="center">ReCO₂gnizer</h1>
   <p align="center">
-    ReAct agent built with LangGraph, leveraging LLM reasoning <br>
-    and semantic web search to compute carbon footprints from product data.
+    AI agent built with LangGraph, integrating LLM reasoning, <br>
+    function calling, and web retrieval for Product Carbon Footprint estimation.
   </p>
 </div>
 
@@ -48,17 +48,15 @@
 
 <br>
 
-**ReCO₂gnizer** is a ReAct-based AI agent that automatically computes the carbon footprint of any product by combining LLM reasoning with semantic web search.
+**ReCO₂gnizer** is a ReAct-based AI agent that automatically computes the Cradle-to-Grave carbon footprint of any product by combining LLM reasoning, function calling, and web retrieval.
 
-- **LangGraph Architecture** — Implements a production-grade agentic framework with deterministic node-based control flow, execution state tracking, and configurable context
-- **LLM Reasoning** — Leverages an LLM (OpenAI/Google Gemini) to retrieve, analyze, and compute the most accurate carbon footprint
-- **Semantic Web Search** — Searches the web via Exa API to retrieve reliable environmental data related to the input product and supporting evidence for estimation
-- **ReAct Loop** — Uses a ReAct loop to prioritize official carbon footprint data and fallback to supporting evidence to inform estimation
-- **Carbon Footprint Quantification** — Computes the carbon footprint value in kg CO₂e (Cradle-to-Grave) based on retrieved information
-- **Logging** — Records full execution traces for debugging, validation, and auditability, making the system transparent and explainable
+- **LangGraph Architecture** — Agentic framework with graph-based orchestration, execution state tracking, and configurable context built with LangGraph
+- **LLM Reasoning with Function Calling** — LLM (OpenAI/Google Gemini) with function calling used as the reasoning engine of the agent
+- **Web Retrieval** — Exa Search API to retrieve the official carbon footprint of the input product and supporting evidence for its estimation
+- **Logging** — Execution traces recorded for the transparency and explainability of the system
 
 > [!NOTE]
-> LLM-based carbon footprint estimation follows established protocols:
+> LLM-based Product Carbon Footprint estimation follows established protocols:
 > - GHG Protocol Product Standard — System boundaries and calculation methodology
 > - ISO 14040/14044 — Life Cycle Assessment principles
 > - PAS 2050 and ISO/TS 14067 — Carbon footprint calculation guidelines
@@ -147,7 +145,7 @@ async def main() -> None:
     # Define Context for the agent
     context = Context(
         model="google_genai:gemini-2.5-flash",
-        # The name of the language model to use for the agent's main interactions
+        # The name of the language model to use as the agent's reasoning engine
         # ('provider-name/model-name'). At the moment, the agent only supports all
         # the models provided by 'google_genai' and 'openai' providers.
         # Default: 'google_genai:gemini-2.5-flash'
