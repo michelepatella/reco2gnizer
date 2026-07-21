@@ -55,7 +55,7 @@
 - **LLM with Function Calling**  
   used as the reasoning engine of the agent.
 - **Web Search**  
-  via the Exa Search API to retrieve the official carbon footprint of a product and supporting evidence for its estimation.
+  via the Exa Search API to retrieve official carbon footprints and supporting evidence for its estimation.
 
 > [!NOTE]
 > LLM-based Product Carbon Footprint estimation follows established protocols:
