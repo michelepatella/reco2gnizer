@@ -50,9 +50,12 @@
 
 **ReCO₂gnizer** is a ReAct-based AI agent that automatically computes the Cradle-to-Grave carbon footprint of any product by combining LLM reasoning, function calling, and web retrieval.
 
-- **LangGraph-Based Agent** with graph-based orchestration, execution state tracking, and configurable context.
-- **LLM Reasoning with Function Calling** (OpenAI/Google Gemini) used as the reasoning engine of the agent.
-- **Web Search** via the Exa Search API to retrieve the official carbon footprint of the input product and supporting evidence for its estimation.
+- **LangGraph-Based Agent**  
+  with graph-based orchestration, execution state tracking, and configurable context.
+- **LLM with Function Calling**  
+  used as the reasoning engine of the agent.
+- **Web Search**  
+  via the Exa Search API to retrieve the official carbon footprint of the input product and supporting evidence for its estimation.
 
 > [!NOTE]
 > LLM-based Product Carbon Footprint estimation follows established protocols:
